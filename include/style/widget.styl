@@ -1,3 +1,18 @@
+.column-widget
+    &.column-left
+        max-width: 360px
+
+    &.column-right
+        max-width: 360px
+
++mobile()
+    .column-widget
+        &.column-left
+            max-width: 100%
+
+        &.column-right
+            max-width: 100%
+
 .widget
     .menu-list
         li

@@ -11,20 +11,17 @@ $(document).ready(() => {
     const state = {
         base: {
             classname: 'card has-text-centered',
-            left: '',
-            width: 64,
-            bottom: bottomMargin
+            right: 32,
+            width: 40,
+            bottom: bottomMargin,
+            zIndex: 500,
         }
     };
     state['desktop-hidden'] = Object.assign({}, state.base, {
         classname: state.base.classname + ' rise-up'
     });
     state['desktop-visible'] = Object.assign({}, state['desktop-hidden'], {
-        classname: state['desktop-hidden'].classname + ' fade-in'
-    });
-    state['desktop-dock'] = Object.assign({}, state['desktop-visible'], {
-        classname: state['desktop-visible'].classname + ' fade-in is-rounded',
-        width: 40
+        classname: state['desktop-hidden'].classname + ' fade-in is-rounded'
     });
     state['mobile-hidden'] = Object.assign({}, state.base, {
         classname: state.base.classname + ' fade-in',
@@ -110,21 +107,22 @@ $(document).ready(() => {
         if (isDesktop() || (isTablet() && !hasLeftSidebar() && hasRightSidebar())) {
             let nextState;
             const padding = ($mainColumn.outerWidth() - $mainColumn.width()) / 2;
-            const maxLeft = $(window).width() - getButtonWidth() - rightMargin;
+            // const maxLeft = $(window).width() - getButtonWidth() - rightMargin;
             const maxBottom = $footer.offset().top + (getButtonHeight() / 2) + bottomMargin;
             if (getScrollTop() === 0 || getScrollBottom() < getRightSidebarBottom() + padding + getButtonHeight()) {
                 nextState = state['desktop-hidden'];
             } else if (getScrollBottom() < maxBottom) {
                 nextState = state['desktop-visible'];
             } else {
-                nextState = Object.assign({}, state['desktop-dock'], {
+                nextState = Object.assign({}, state['desktop-visible'], {
                     bottom: getScrollBottom() - maxBottom + bottomMargin
                 });
             }
 
-            const left = $mainColumn.offset().left + $mainColumn.outerWidth() + padding;
+            // const left = $mainColumn.offset().left + $mainColumn.outerWidth() + padding;
             nextState = Object.assign({}, nextState, {
-                left: Math.min(left, maxLeft)
+                // left: Math.min(left, maxLeft)
+                right: 32
             });
             applyState(nextState);
         } else {

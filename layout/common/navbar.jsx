@@ -40,7 +40,7 @@ class Navbar extends Component {
         }
 
         return <nav class="navbar navbar-main">
-            <div class="container navbar-container">
+            <div class="container navbar-container is-fluid">
                 <div class="navbar-brand justify-content-center">
                     <a class="navbar-item navbar-logo" href={siteUrl}>
                         {navbarLogo}
@@ -106,7 +106,7 @@ module.exports = cacheComponent(Navbar, 'common.navbar', props => {
 
     return {
         logo,
-        logoUrl: url_for(logo),
+        // logoUrl: url_for(logo),
         siteUrl: url_for('/'),
         siteTitle: title,
         menu,

@@ -75,6 +75,7 @@ class Widgets extends Component {
 
         return <div class={classname({
             'column': true,
+            'column-widget': true,
             ['column-' + position]: true,
             [getColumnSizeClass(columnCount)]: true,
             [getColumnVisibilityClass(columnCount, position)]: true,

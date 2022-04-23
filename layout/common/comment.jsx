@@ -7,7 +7,7 @@ module.exports = class extends Component {
         const { config, page, helper } = this.props;
         const { __ } = helper;
         const { comment } = config;
-        if (!comment || typeof comment.type !== 'string') {
+        if (!comment || page.comments === false || typeof comment.type !== 'string') {
             return null;
         }
 
